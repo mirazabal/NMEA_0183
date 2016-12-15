@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -ldl -g  -Wl,--no-as-needed -ldl CMakeFiles/NMEA_0183.dir/unit_test_NMEA_0183.cpp.o  -o NMEA_0183 -rdynamic ../lib_x64/googlemock/gtest/libgtest.a -lpthread 
