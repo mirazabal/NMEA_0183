@@ -28,7 +28,7 @@ int _is_value_set(const char *value)
 	return 0;
 }
 
-char *_crop_sentence(char *sentence, size_t length)
+char *_crop_sentence(char* sentence, size_t length)
 {
 	/* Skip type word, 7 characters (including $ and ,) */
 	sentence += NMEA_PREFIX_LENGTH + 2;
@@ -44,16 +44,19 @@ char *_crop_sentence(char *sentence, size_t length)
 	return sentence;
 }
 
-int _split_string_by_comma(char *string, char **values, int max_values)
+int _split_string_by_comma(char const* source, size_t sourceSize, char **values, size_t max_values)
 {
 	int i = 0;
+	
+	char* str = (char*)malloc(sourceSize);
+	strncpy(str,source, sourceSize);
 
-	values[i++] = string;
-	while (i < max_values && NULL != (string = strchr(string, ','))) {
-		*string = '\0';
-		values[i++] = ++string;
+	values[i++] = str;
+	while (i < max_values && NULL != (str = strchr(str, ','))) {
+		*str = '\0';
+		values[i++] = ++str;
 	}
-
+	free(str);
 	return i;
 }
 

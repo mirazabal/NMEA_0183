@@ -16,7 +16,7 @@ void nmea_register_parse(nmea_parser_module_t *parser);
 
 nmea_parser_module_t *nmea_get_parse( nmea_t parse);
 
-nmea_basic_t *nmea_parse(char *sentence, size_t length, int check_checksum);
+nmea_basic_t *nmea_parse(char const* sentence, size_t length, int check_checksum);
 
 void nmea_free(nmea_basic_t *data);
 

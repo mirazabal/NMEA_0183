@@ -26,23 +26,23 @@
 #define NMEA_DATE_FORMAT	"%d%m%y"
 #define NMEA_DATE_FORMAT_LEN	6
 
-int _is_value_set(const char *value);
+int _is_value_set(char const *value);
 
-char *_crop_sentence(char *sentence, size_t length);
+char *_crop_sentence(char* sentence, size_t length);
 
-int _split_string_by_comma(char *string, char **values, int max_values);
+int _split_string_by_comma(char const* source, size_t sourceSize, char **values, size_t max_values);
 
 nmea_parser_module_t *nmea_get_parser_by_type(nmea_t type);
 
-nmea_parser_module_t *nmea_get_parser_by_sentence(const char *sentence);
+nmea_parser_module_t *nmea_get_parser_by_sentence(char const*sentence);
 
-nmea_t nmea_get_type(const char *sentence);
+nmea_t nmea_get_type(char const*sentence);
 
-uint8_t nmea_get_checksum(const char *sentence);
+uint8_t nmea_get_checksum(char const*sentence);
 
-int nmea_has_checksum(const char *sentence, size_t length);
+int nmea_has_checksum(char const* sentence, size_t length);
 
-int nmea_validate(const char *sentence, size_t length, int check_checksum);
+int nmea_validate(char const*sentence, size_t length, int check_checksum);
 
 int nmea_position_parse(char *s, nmea_position *pos);
 

@@ -1,5 +1,6 @@
 extern "C"
 {
+#include "src/parser_types.h"
 #include "gpgga/gpgga.h"
 #include "gpgll/gpgll.h"
 #include "gprmc/gprmc.h"
@@ -56,7 +57,9 @@ namespace
 			nmea_register_parse(gpgga_);
 			nmea_register_parse(gpgll_);
 			nmea_register_parse(gprmc_);
-		
+			
+			ASSERT_EQ(0, open_database());
+			ASSERT_EQ(0, create_table());		
 		}	
 		
 		virtual void TearDown(){
@@ -75,7 +78,6 @@ namespace
 
 	};
 	
-
 	TEST_F(NMEA_0183_TEST, parse_simple_sentence_gpgga)
 	{
 		char sentence[] = "$GPGGA,191410,4735.5634,N,00739.3538,E,1,04,4.4,351.5,M,48.0,M,,*45\n\n";
@@ -83,9 +85,14 @@ namespace
 
 		ASSERT_NE( data , nullptr);
 
-		ASSERT_EQ(NMEA_GPGGA, data->type );
+		ASSERT_EQ(NMEA_GPGGA, data->type);
 		nmea_gpgga_t* nmea_gp = (nmea_gpgga_t*)data;
-	
+
+		char sResult[255];
+		int const sResultSize = sizeof(sResult)/ sizeof(sResult[0]);
+		ASSERT_EQ(0, create_sql_data( TYPE_STRING[data->type], sentence, sResult, sResultSize ) );
+		ASSERT_EQ(0, insert_data(sResult));
+
 		if(data != NULL)
 			nmea_free(data);
 	}
@@ -98,7 +105,7 @@ namespace
 		ASSERT_EQ( NMEA_GPGLL , data->type);
 
 		nmea_gpgll_t *gpgll = (nmea_gpgll_t *) data;
-
+/*
 		printf("GPGLL Sentence\n");
 		printf("Longitude:\n");
 		printf("  Degrees: %d\n", gpgll->longitude.degrees);
@@ -108,6 +115,12 @@ namespace
 		printf("  Degrees: %d\n", gpgll->latitude.degrees);
 		printf("  Minutes: %f\n", gpgll->latitude.minutes);
 		printf("  Cardinal: %c\n", (char) gpgll->latitude.cardinal);
+*/
+		char sResult[255];
+		int const sResultSize = sizeof(sResult)/ sizeof(sResult[0]);
+		ASSERT_EQ(0, create_sql_data( TYPE_STRING[data->type], sentence, sResult, sResultSize ) );
+		ASSERT_EQ(0, insert_data(sResult));
+
 		if(data != NULL)	
 			nmea_free(data);
 	}
@@ -121,7 +134,7 @@ namespace
 		ASSERT_EQ( NMEA_GPRMC , data->type);
 
 		nmea_gprmc_t *gprmc = (nmea_gprmc_t *) data;
-
+/*
 		printf("GPRMC Sentence\n");
 		printf("Longitude:\n");
 		printf("  Degrees: %d\n", gprmc->longitude.degrees);
@@ -131,6 +144,7 @@ namespace
 		printf("  Degrees: %d\n", gprmc->latitude.degrees);
 		printf("  Minutes: %f\n", gprmc->latitude.minutes);
 		printf("  Cardinal: %c\n", (char) gprmc->latitude.cardinal);
+*/
 		if(data != NULL)	
 			nmea_free(data);
 	}

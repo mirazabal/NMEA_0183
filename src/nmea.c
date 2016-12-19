@@ -54,9 +54,9 @@ nmea_parser_module_t *nmea_get_parse(nmea_t t)
 }
 
 
-nmea_basic_t *nmea_parse(char *sentence, size_t length, int check_checksum)
+nmea_basic_t *nmea_parse(char const *sentence, size_t length, int check_checksum)
 {
-	unsigned int n_vals, val_index;
+	size_t n_vals, val_index;
 	char *value, *val_string;
 	char *values[255];
 	nmea_parser_module_t *parser;
@@ -75,11 +75,11 @@ nmea_basic_t *nmea_parse(char *sentence, size_t length, int check_checksum)
 	/* Crop sentence from type word and checksum */
 	val_string = _crop_sentence(sentence, length);
 	if (NULL == val_string) {
-	      	return (nmea_basic_t*) NULL;
+		return (nmea_basic_t*) NULL;
 	}
 
 	/* Split the sentence into values */
-	n_vals = _split_string_by_comma(val_string, values, ARRAY_LENGTH(values));
+	n_vals = _split_string_by_comma(val_string, length, values, ARRAY_LENGTH(values));
 	if (0 == n_vals) {
 		return (nmea_basic_t*) NULL;
 	}

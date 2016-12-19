@@ -29,12 +29,16 @@ file(GLOB NMEA_0183_SRC
 	"gpgll/*.h"
 	"gpgrmc/*.h"
 	"src/*.h"
+	"SQLite/*.h"
+	"SQLite/sqlite_src/*.h"
 	"*.hpp"
 	"*.c"
     "gpgga/*.c"
 	"gpgll/*.c"
 	"gprmc/*.c"
 	"src/*.c"
+	"SQLite/*.c"
+	"SQLite/sqlite_src/*.c"
 	"*.cpp"
 )
 
