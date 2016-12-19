@@ -32,7 +32,7 @@ add_executable(NMEA_0183 ${NMEA_0183_SRC})
 
 #TARGET_LINK_LIBRARIES(Minimum PUBLIC ${NMEA_LIBRARY} ${GPGGA_LIBRARY}   ${GPGLL_LIBRARY}  ${GPRMC_LIBRARY}  pthread )
 
-find_library(GTEST_LIBRARY gtest ~/workspace/NMEA_0183/lib_x64/googlemock/gtest) 
+find_library(GTEST_LIBRARY gtest ~/workspace/NMEA_0183/lib_x86/googlemock/gtest) 
 
 TARGET_LINK_LIBRARIES(NMEA_0183 PUBLIC ${GTEST_LIBRARY} pthread)
 

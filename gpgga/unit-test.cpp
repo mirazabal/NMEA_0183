@@ -17,10 +17,10 @@ namespace
 		virtual void SetUp(){
 			parser_ = (nmea_parser_module_t*)malloc(sizeof( nmea_parser_module_t));
 			ASSERT_FALSE( NULL == parser_);
-			parser_->allocate_data = &allocate_data;
-			parser_->set_default = &set_default;
-			parser_->free_data = &free_data;
-			parser_->parse = &parse;
+			parser_->allocate_data = &allocate_data_GPGGA;
+			parser_->set_default = &set_default_GPGGA;
+			parser_->free_data = &free_data_GPGGA;
+			parser_->parse = &parse_GPGGA;
 			parser_->parser.type = NMEA_GPGGA;
 		}
 
@@ -36,15 +36,15 @@ namespace
 	{
 		ASSERT_TRUE( NULL ==  nmea_get_parse(parser_->parser.type ));
 		nmea_register_parse(parser_);
-		ASSERT_EQ( NULL ,  nmea_get_parse( NMEA_GPGGA ));
+		ASSERT_EQ( NULL ,  nmea_get_parse( NMEA_GPGLL ));
 		ASSERT_EQ( NULL ,  nmea_get_parse( NMEA_GPRMC ));
 		nmea_parser_module_s *p = nmea_get_parse(parser_->parser.type );
 		ASSERT_TRUE(  p != NULL );
-		ASSERT_EQ( p->parser.type , NMEA_GPGLL );
+		ASSERT_EQ( p->parser.type , NMEA_GPGGA );
 
 		nmea_parser_module_s *p2 = nmea_get_parse(parser_->parser.type );
 		ASSERT_TRUE(  p2 != NULL );
-		ASSERT_EQ( p2->parser.type , NMEA_GPGLL );
+		ASSERT_EQ( p2->parser.type , NMEA_GPGGA );
 
 	}
 
@@ -66,7 +66,7 @@ namespace
 
 	TEST_F(GPGGA_TEST, parse_error_in_sentence_no_$)
 	{
-		char sentence[] = "GPGLL,4916.45,12311.12,W,225444,A\n\n";
+		char sentence[] = "GPGGA,4916.45,12311.12,W,225444,A\n\n";
 		nmea_register_parse(parser_);
 		nmea_basic_t* data = nmea_parse(sentence, strlen( sentence ), 0 );		
 	
@@ -77,7 +77,7 @@ namespace
 
 	TEST_F(GPGGA_TEST, parse_error_in_sentence_no_EOF)
 	{
-		char sentence[] = "$GPGLL,4916.45,S,12311.12,W,225444,A\n";
+		char sentence[] = "$GPGGA,4916.45,S,12311.12,W,225444,A\n";
 		nmea_register_parse(parser_);
 		nmea_basic_t* data =	nmea_parse(sentence, strlen( sentence ), 0 );		
 		ASSERT_TRUE( NULL ==  data  );
@@ -87,7 +87,7 @@ namespace
 
 	TEST_F(GPGGA_TEST, parse_sentence_excess_chars)
 	{
-		char sentence[] = "qwe456$GPGLL,4916.45,S,12311.12,W,225444,A\n\n456789 ";
+		char sentence[] = "qwe456$GPGGA,4916.45,S,12311.12,W,225444,A\n\n456789 ";
 		/* find start (a dollar $ign) */
 		char *start = (char*)memchr(sentence, '$', strlen(sentence));
 		ASSERT_TRUE( NULL != start);
@@ -102,7 +102,7 @@ namespace
 		nmea_basic_t* data =	nmea_parse(start , sentenceLenght , 0 );		
 	
 		ASSERT_TRUE( NULL !=  data  );
-		ASSERT_EQ( NMEA_GPGLL , data->type);
+		ASSERT_EQ( NMEA_GPGGA , data->type);
 
 		nmea_gpgga_t *gpgga = (nmea_gpgga_t *) data;
 

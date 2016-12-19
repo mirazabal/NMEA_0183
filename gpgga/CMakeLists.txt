@@ -31,7 +31,7 @@ file(GLOB GPGGA_SRC
 
 add_executable(GPGGA ${GPGGA_SRC})
 
-find_library(GTEST_LIBRARY gtest ~/workspace/NMEA_0183/lib_x64/googlemock/gtest) 
+find_library(GTEST_LIBRARY gtest ~/workspace/NMEA_0183/lib_x86/googlemock/gtest) 
 
 TARGET_LINK_LIBRARIES(GPGGA PUBLIC ${GTEST_LIBRARY} pthread)
 

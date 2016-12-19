@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++14 -ldl -fprofile-arcs -ftest-coverage -g  -Wl,--no-as-needed -ldl CMakeFiles/SQLite.dir/unit-test.cpp.o  -o SQLite -rdynamic /home/mikel/workspace/NMEA_0183/lib_x64/googlemock/gtest/libgtest.a -lpthread 

@@ -18,10 +18,10 @@ namespace
 		virtual void SetUp(){
 			parser_ = (nmea_parser_module_t*)malloc(sizeof( nmea_parser_module_t));
 			ASSERT_FALSE( NULL == parser_);
-			parser_->allocate_data = &allocate_data;
-			parser_->set_default = &set_default;
-			parser_->free_data = &free_data;
-			parser_->parse = &parse;
+			parser_->allocate_data = &allocate_data_GPGLL;
+			parser_->set_default = &set_default_GPGLL;
+			parser_->free_data = &free_data_GPGLL;
+			parser_->parse = &parse_GPGLL;
 			parser_->parser.type = NMEA_GPGLL;
 		}
 

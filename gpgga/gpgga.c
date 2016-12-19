@@ -5,7 +5,7 @@
 
 #include "gpgga.h"
 
-int init(nmea_parser_t *parser)
+int init_GPGGA(nmea_parser_t *parser)
 {
 	/* Declare what sentence type to parse */
 	NMEA_PARSER_TYPE(parser, NMEA_GPGGA);
@@ -13,7 +13,7 @@ int init(nmea_parser_t *parser)
 	return 0;
 }
 
-int allocate_data(nmea_parser_t *parser)
+int allocate_data_GPGGA(nmea_parser_t *parser)
 {
 	parser->data = malloc(sizeof (nmea_gpgga_t));
 	if (NULL == parser->data) {
@@ -23,19 +23,19 @@ int allocate_data(nmea_parser_t *parser)
 	return 0;
 }
 
-int set_default(nmea_parser_t *parser)
+int set_default_GPGGA(nmea_parser_t *parser)
 {
 	memset(parser->data, 0, sizeof (nmea_gpgga_t));
 	return 0;
 }
 
-int free_data(nmea_basic_t *data)
+int free_data_GPGGA(nmea_basic_t *data)
 {
 	free(data);
 	return 0;
 }
 
-int parse(nmea_parser_t *parser, char *value, int val_index)
+int parse_GPGGA(nmea_parser_t *parser, char *value, int val_index)
 {
 	nmea_gpgga_t *data = (nmea_gpgga_t *) parser->data;
 

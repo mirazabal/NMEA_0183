@@ -1,3 +1,0 @@
-/home/mikel/workspace/NMEA_0183/SQlite/build/CMakeFiles/edit_cache.dir
-/home/mikel/workspace/NMEA_0183/SQlite/build/CMakeFiles/rebuild_cache.dir
-/home/mikel/workspace/NMEA_0183/SQlite/build/CMakeFiles/SQLite.dir

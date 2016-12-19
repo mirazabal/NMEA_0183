@@ -25,15 +25,15 @@ struct nmea_gpgll_s {
 typedef struct nmea_gpgll_s nmea_gpgll_t;
 
 
-int init(nmea_parser_t *parser);
+int init_GPGLL(nmea_parser_t *parser);
 
-int allocate_data(nmea_parser_t *parser);
+int allocate_data_GPGLL(nmea_parser_t *parser);
 
-int set_default(nmea_parser_t *parser);
+int set_default_GPGLL(nmea_parser_t *parser);
 
-int parse(nmea_parser_t *parser, char *value, int val_index);
+int parse_GPGLL(nmea_parser_t *parser, char *value, int val_index);
 
-int free_data(nmea_basic_t *data);
+int free_data_GPGLL(nmea_basic_t *data);
 
 
 

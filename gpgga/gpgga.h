@@ -29,15 +29,15 @@ struct nmea_gpgga_s {
 typedef struct nmea_gpgga_s nmea_gpgga_t;
 
 
-int init(nmea_parser_t *parser);
+int init_GPGGA(nmea_parser_t *parser);
 
-int allocate_data(nmea_parser_t *parser);
+int allocate_data_GPGGA(nmea_parser_t *parser);
 
-int set_default(nmea_parser_t *parser);
+int set_default_GPGGA(nmea_parser_t *parser);
 
-int parse(nmea_parser_t *parser, char *value, int val_index);
+int parse_GPGGA(nmea_parser_t *parser, char *value, int val_index);
 
-int free_data(nmea_basic_t *data);
+int free_data_GPGGA(nmea_basic_t *data);
 
 #endif  /* INC_NMEA_GPGGA_H */
 

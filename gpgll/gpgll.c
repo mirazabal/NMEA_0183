@@ -2,7 +2,7 @@
 #include "parse.h"
 
 
-int init(nmea_parser_t *parser)
+int init_GPGLL(nmea_parser_t *parser)
 {
 	/* Declare what sentence type to parse */
 	NMEA_PARSER_TYPE(parser, NMEA_GPGLL);
@@ -10,7 +10,7 @@ int init(nmea_parser_t *parser)
 	return 0;
 }
 
-int allocate_data(nmea_parser_t *parser)
+int allocate_data_GPGLL(nmea_parser_t *parser)
 {
 	parser->data = (nmea_basic_t*)malloc(sizeof (nmea_gpgll_t));
 	if (NULL == parser->data) {
@@ -19,19 +19,19 @@ int allocate_data(nmea_parser_t *parser)
 	return 0;
 }
 
-int set_default(nmea_parser_t *parser)
+int set_default_GPGLL(nmea_parser_t *parser)
 {
 	memset(parser->data, 0, sizeof (nmea_gpgll_t));
 	return 0;
 }
 
-int free_data(nmea_basic_t *data)
+int free_data_GPGLL(nmea_basic_t *data)
 {
 	free(data);
 	return 0;
 }
 
-int parse(nmea_parser_t *parser, char *value, int val_index)
+int parse_GPGLL(nmea_parser_t *parser, char *value, int val_index)
 {
 	nmea_gpgll_t *data = (nmea_gpgll_t *) parser->data;
 

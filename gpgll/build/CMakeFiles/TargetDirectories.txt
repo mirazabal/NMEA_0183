@@ -1,3 +1,0 @@
-/home/mikel/workspace/NMEA_0183/gpgll/build/CMakeFiles/edit_cache.dir
-/home/mikel/workspace/NMEA_0183/gpgll/build/CMakeFiles/rebuild_cache.dir
-/home/mikel/workspace/NMEA_0183/gpgll/build/CMakeFiles/GPGGL.dir
