@@ -3,30 +3,42 @@ project (NMEA_0183)
 
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_EXE_LINKER_FLAGS "-Wl,--no-as-needed -ldl")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -ldl")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -ldl")
+set(CMAKE_CPPFLAGS "-fprofile-arcs -ftest-coverage " )
+set(CMAKE_LDFLAGS " -fprofile-arcs")
+set(CMAKE_CFLAGS "-fprofile-arcs -ftest-coverage " )
 
 
 
 include_directories(${NMEA_0183_SOURCE_DIR})
+include_directories(~/workspace/NMEA_0183/include/gtest)
 include_directories(${NMEA_0183_SOURCE_DIR}/include)
-include_directories(${NMEA_0183_SOURCE_DIR}/include/src)
-include_directories(${NMEA_0183_SOURCE_DIR}/include/gtest)
+
+include_directories(${NMEA_0183_SOURCE_DIR}/gpgga)
+include_directories(${NMEA_0183_SOURCE_DIR}/gpgll)
+include_directories(${NMEA_0183_SOURCE_DIR}/gprmc)
+
+include_directories(${NMEA_0183_SOURCE_DIR}/SQLite)
+include_directories(${NMEA_0183_SOURCE_DIR}/src)
+
 
 
 file(GLOB NMEA_0183_SRC
     "*.h"
+	"gpgga/*.h"
+	"gpgll/*.h"
+	"gpgrmc/*.h"
+	"src/*.h"
 	"*.hpp"
 	"*.c"
-    "*.cpp"
+    "gpgga/*.c"
+	"gpgll/*.c"
+	"gprmc/*.c"
+	"src/*.c"
+	"*.cpp"
 )
 
 add_executable(NMEA_0183 ${NMEA_0183_SRC})
-
-#find_library(NMEA_LIBRARY nmea HINTS /home/mikel/workspace/NMEA_0183/libnmea/examples/include)
-
-#find_library(GPGLL_LIBRARY gpgll HINTS /home/mikel/workspace/NMEA_0183/libnmea/examples/include/nmea)
-
-#find_library(GPGGA_LIBRARY gpgga HINTS /home/mikel/workspace/NMEA_0183/libnmea/examples/include/nmea)
 
 #find_library(GPRMC_LIBRARY gprmc HINTS /home/mikel/workspace/NMEA_0183/libnmea/examples/include/nmea)
 

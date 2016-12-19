@@ -1,5 +1,5 @@
 #include "gpgll.h"
-#include "parse.h"
+#include "../src/parse.h"
 
 
 int init_GPGLL(nmea_parser_t *parser)

@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "parser_types.h"
-#include "parse.h"
+//#include "../src/parser_types.h"
+#include "../src/parse.h"
 
 /* Value indexes */
 #define NMEA_GPGLL_LATITUDE		0
