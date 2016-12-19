@@ -10,7 +10,7 @@ char const *databaseName_ = "test.db";
 		  
 /* Create SQL Table */
 char const*  sqlTable_ = "CREATE TABLE IF NOT EXISTS COMMAND_TABLE("  \
-				    "SQLTIME TIMESTAMP PRIMARY KEY DEFAULT CURRENT_TIMESTAMP NOT NULL," \
+					"SQLTIME TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL," \
 					"COMMAND_TYPE           TEXT    NOT NULL," \
 				    "COMMAND_DATA           TEXT    NOT NULL );";
 
